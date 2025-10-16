@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote, BadgeCheck } from 'lucide-react';
 import type { Testimonial } from '@/types';
@@ -101,6 +102,8 @@ export default function Testimonials() {
     ));
   };
 
+  const avatarUrl = (id: string) => `https://i.pravatar.cc/80?img=${(parseInt(id, 10) % 70) + 1}`;
+
   return (
     <section id="testimonials" className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,9 +146,13 @@ export default function Testimonials() {
                   </p>
 
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                      {testimonial.name.charAt(0)}
-                    </div>
+                    <Image
+                      src={avatarUrl(testimonial.id)}
+                      alt={`Foto ${testimonial.name}`}
+                      width={48}
+                      height={48}
+                      className="rounded-full object-cover"
+                    />
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <p className="font-semibold text-gray-900">{testimonial.name}</p>
@@ -182,9 +189,13 @@ export default function Testimonials() {
                 </p>
 
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {testimonialsData[currentIndex].name.charAt(0)}
-                  </div>
+                  <Image
+                    src={avatarUrl(testimonialsData[currentIndex].id)}
+                    alt={`Foto ${testimonialsData[currentIndex].name}`}
+                    width={48}
+                    height={48}
+                    className="rounded-full object-cover"
+                  />
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <p className="font-semibold text-gray-900">{testimonialsData[currentIndex].name}</p>
